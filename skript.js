@@ -154,5 +154,5 @@ function removeTransition(e) {
   }
 
 
-const knapper = Array.from(document.querySelectorAll('#body > div'));
+const knapper = Array.from(document.querySelectorAll('.numbers, .operators'));
 knapper.forEach(key => key.addEventListener('transitionend', removeTransition));

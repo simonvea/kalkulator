@@ -18,18 +18,23 @@ Containers
 ===============
  */
 
- body {
+body {
     background-color: rosybrown;
- }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 #container{
-    background-color: whitesmoke;
-    width: 400px;
-    height: 600px;
-    position: relative;
-    margin: auto;
+    width: calc(80vh / 1.5);
+    height: 80vh;
+    border: 2px solid whitesmoke;
     border-radius: 5px;
     box-shadow: 10px 15px 10px grey;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: repeat(6, 1fr); /* 6 rows */
 }
 
 /* Background color on buttons and display */
@@ -50,32 +55,22 @@ Containers
 
 /* 
 ==========================
-Display and body size etc
+        Display
 ==========================
  */
 #display{
     color: black;
-    width: calc(100%-10px);
-    height: 100px;
-    margin: 10px 5px;
-    position: relative;
-    top: 5px;
+    grid-column: 1 / 5;
+    grid-row: 1;
+    padding-top: 2vh;
+    padding-right: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
     text-align: right;
-    padding-right: 20px;
-    line-height: 120px;
-    font-size: 70px;
+    font-size: 10vh;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
-
-#body{
-    background-color: rgba(117,115,225);
-    width: calc(100%-10px);
-    height: 490px;
-    margin: 5px; 
-    margin-top: -5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 /* 
@@ -84,29 +79,32 @@ Buttons
 =====================
  */
 
-.numbers, .operators {
-    width: calc(25% - 2px);
-    height: calc(20% - 2px);
-    margin: 1px;
-    float: left;
-    text-align: center;
-    line-height: 110px;
-    transition: all .07s ease;
-    font-size: 50px;
-    color: whitesmoke;
-}
+ /* ---- Grid positioning ------ */
 
-.top{
-    width: 193px;
-    height: calc(20% - 2px);
-    margin: 1px;
-    margin-top: 1px;
-    float: left;
-    text-align: center;
-    line-height: 110px;
+ #backspace, #clear {
+     grid-row: 2;
+ }
+
+ #backspace {
+     grid-column: 1 / 3;
+     padding-top: 0;
+ }
+
+ #clear {
+     grid-column: 3 / 5;
+ }
+
+ /* ----- layout ------ */
+
+.numbers, .operators {
     transition: all .07s ease;
-    font-size: 50px;
+    border: 1px solid rgba(117,115,225);
+    font-size: 5vh;
     color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2vh;
 }
 
 div[id="0"] {
@@ -117,12 +115,12 @@ div[id="add"] {
 }
 
 /* 
-====================
-JS transitioneffect
-====================
+=====================
+JS transition effects
+=====================
  */
 
-.press{
+.press {
     transform: scale(1.1);
     border-color: #ffc600;
     box-shadow: 0 0 1rem #ffc600;

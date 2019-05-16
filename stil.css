@@ -1,0 +1,130 @@
+
+/* 
+==============
+General properties
+==============
+ */
+
+ *,
+ *:after,
+ *:before {
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+ }
+
+/* 
+===============
+Containers
+===============
+ */
+
+ body {
+    background-color: rosybrown;
+ }
+
+#container{
+    background-color: whitesmoke;
+    width: 400px;
+    height: 600px;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 10px 15px 10px grey;
+}
+
+/* Background color on buttons and display */
+
+#display {
+    background: rgba(147,206,222,1);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(147,206,222,1)), color-stop(0%, rgba(117,189,209,1)), color-stop(0%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+}
+.top, .numbers, .operators {
+    background-color:rgba(117,130,255);
+}
+
+/* 
+==========================
+Display and body size etc
+==========================
+ */
+#display{
+    color: black;
+    width: calc(100%-10px);
+    height: 100px;
+    margin: 10px 5px;
+    position: relative;
+    top: 5px;
+    text-align: right;
+    padding-right: 20px;
+    line-height: 120px;
+    font-size: 70px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#body{
+    background-color: rgba(117,115,225);
+    width: calc(100%-10px);
+    height: 490px;
+    margin: 5px; 
+    margin-top: -5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* 
+=====================
+Buttons
+=====================
+ */
+
+.numbers, .operators {
+    width: calc(25% - 2px);
+    height: calc(20% - 2px);
+    margin: 1px;
+    float: left;
+    text-align: center;
+    line-height: 110px;
+    transition: all .07s ease;
+    font-size: 50px;
+    color: whitesmoke;
+}
+
+.top{
+    width: 193px;
+    height: calc(20% - 2px);
+    margin: 1px;
+    margin-top: 1px;
+    float: left;
+    text-align: center;
+    line-height: 110px;
+    transition: all .07s ease;
+    font-size: 50px;
+    color: whitesmoke;
+}
+
+div[id="0"] {
+    border-bottom-left-radius: 5px;  
+}
+div[id="add"] {
+    border-bottom-right-radius: 5px;  
+}
+
+/* 
+====================
+JS transitioneffect
+====================
+ */
+
+.press{
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+    color: rgba(147,206,222,1);
+  }

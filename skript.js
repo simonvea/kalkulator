@@ -4,13 +4,75 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 const display = document.getElementById("display")
 
-let temp = 0;
+let screenValue = 0;
 let presentValue;
 let oldValue;
 let sum = 0;
 let action;
 
-display.textContent = temp;
+display.textContent = screenValue;
+
+//faktisk funksjonalitet
+function setScreenValue(inputNumber) {  // prev useNumber
+
+    if(inputNumber == "backspace") {
+        removeLastNumber();
+    } else {
+        //viser tallene på displayet og lagrer verdiene i screenValue.
+        if (screenValue == 0) {screenValue = inputNumber}
+        else if (screenValue % 1 != 0) {parseFloat(screenValue,10).toFixed(1)} //hvis det er decimaler i input får de bare lov å bruke ett.
+        else if(screenValue.length >= 6) {screenValue} //forhindrer display overflow
+        else {screenValue += inputNumber};
+        display.textContent = screenValue;
+    };  
+}
+
+function removeLastNumber() {
+    if(screenValue.toString().length <= 1) {screenValue = 0}
+    else {screenValue = screenValue.slice(0, -1)};
+    display.textContent = screenValue;
+}
+
+function actions(id) {
+
+    if (id == "sum") {
+        //det som ble trykket på før =
+        presentValue = parseFloat(screenValue,10);
+
+        //sjekker om luringen prøver å dele på 0
+
+        if (action == "divide" && screenValue == 0) {
+
+            clearVariables();
+            
+            display.textContent = "TULLING";
+
+        } else { //summer, og vis
+
+            sum = operator(window[action], oldValue, presentValue);
+            if(sum.toString().length > 6) {sum = sum.toExponential(3)};
+            oldValue = sum;
+            display.textContent = sum;
+        };
+        
+
+    } else if (id == "clear") {
+        clearVariables()
+    } else { //hvis det blir klikket på noen av operatorene..
+        
+        presentValue = parseFloat(screenValue,10); //lagrer input
+
+        //hvis det allerede finnes en gammel verdi, summer verdiene basert på forrige operator
+        if(oldValue !== undefined) {sum = operator(window[action], oldValue, presentValue)}
+
+        //arkiverer input eller gammel verdi
+        oldValue !== undefined ? oldValue = sum : oldValue = presentValue;  
+
+        action = id;  //lagrer hva som ble trykket på
+    };
+
+    screenValue = 0; //nullstiller display
+};
 
 //math functions below
 function add(a,b) {
@@ -33,71 +95,13 @@ function operator(operation, a, b) {
     return operation(a,b);
 }
 
-//faktisk funksjonalitet
-function useNumber(n) {
-
-    if(n == "backspace") {
-        if(temp.toString().length <= 1) {temp = 0}
-        else {temp = temp.slice(0, -1)};
-        display.textContent = temp;
-
-    } else {
-        //viser tallene på displayet og lagrer verdiene i temp.
-        if (temp == 0) {temp = n}
-        else if (temp % 1 != 0) {parseFloat(temp,10).toFixed(1)} //hvis det er decimaler i input får de bare lov å bruke ett.
-        else if(temp.length >= 6) {temp} //forhindrer display overflow
-        else {temp += n};
-        display.textContent = temp;
-    };  
-}
-
-function actions(id) {
-
-    if (id == "sum") {
-        //det som ble trykket på før =
-        presentValue = parseFloat(temp,10);
-
-        //sjekker om luringen prøver å dele på 0
-
-        if (action == "divide" && temp == 0) {
-
-            clearVariables();
-            
-            display.textContent = "TULLING";
-
-        } else { //summer, og vis
-
-            sum = operator(window[action], oldValue, presentValue);
-            if(sum.toString().length > 6) {sum = sum.toExponential(3)};
-            oldValue = sum;
-            display.textContent = sum;
-        };
-        
-
-    } else if (id == "clear") {
-        clearVariables()
-    } else { //hvis det blir klikket på noen av operatorene..
-        
-        presentValue = parseFloat(temp,10); //lagrer input
-
-        //hvis det allerede finnes en gammel verdi, summer verdiene basert på forrige operator
-        if(oldValue !== undefined) {sum = operator(window[action], oldValue, presentValue)}
-
-        //arkiverer input eller gammel verdi
-        oldValue !== undefined ? oldValue = sum : oldValue = presentValue;  
-
-        action = id;  //lagrer hva som ble trykket på
-    };
-
-    temp = 0; //nullstiller display
-};
 
 function clearVariables() {
-    temp = 0;
+    screenValue = 0;
     presentValue = undefined;
     oldValue = undefined;
     sum = 0;
-    display.textContent = temp;
+    display.textContent = screenValue;
 };
 
 //do stuff

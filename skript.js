@@ -115,10 +115,8 @@ window.addEventListener("keypress", (e) => {
     const number = document.getElementById(`${e.key}`);
     const operation = document.querySelector(`div[data-key="${e.key}"]`);
     if(e.key == "Enter" || e.key == "=") {
-        console.log("hei");
-        const sum = document.getElementById("sum");
         calculateSum();
-        sum.classList.add("press");
+        sumButton.classList.add("press");
     } else if(number) {
         setScreenValue(e.key);
         number.classList.add("press");

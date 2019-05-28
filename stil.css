@@ -49,9 +49,6 @@ body {
     background: radial-gradient(ellipse at center, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 0%, rgba(117,189,209,1) 0%, rgba(73,165,191,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
 }
-.top, .numbers, .operators {
-    background-color:rgba(117,130,255);
-}
 
 /* 
 ==========================
@@ -96,9 +93,10 @@ Buttons
 
  /* ----- layout ------ */
 
-.numbers, .operators {
+.button {
     transition: all .07s ease;
     border: 1px solid rgba(117,115,225);
+    background-color:rgba(117,130,255);
     font-size: 5vh;
     color: whitesmoke;
     display: flex;

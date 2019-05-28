@@ -130,8 +130,7 @@ window.addEventListener("keydown", (e) => {
     if(e.key == "Backspace") {
         e.preventDefault();
         removeLastNumber();
-        const backspace = document.getElementById("backspace");
-        backspace.classList.add("press");
+        backspaceButton.classList.add("press");
     } else {return};
 });
 

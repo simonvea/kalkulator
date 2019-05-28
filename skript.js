@@ -104,53 +104,40 @@ function clearVariables() {
     display.textContent = screenValue;
 };
 
-
-
-
-
-
-
-
 /* 
-===========================
-==== EventListeners =======
-===========================
+=================================
+==== Keyboard EventListeners ====
+=================================
  */
 
-//TASTATUR
-// sjekker om symboler blir trykket på og utførerer evt. handlinger. (tastatur)
 window.addEventListener("keypress", (e) => {
-    const key = document.querySelector(`div[data-char="${e.charCode}"]`);
-    if(!key) {
-        const enterKey = document.querySelector(`div[data-char2="${e.charCode}"]`);
-        if (!enterKey) return;
+    if(e.charCode == 47) {e.preventDefault()}
+    const number = document.getElementById(`${e.key}`);
+    const operation = document.querySelector(`div[data-key="${e.key}"]`);
+    if(e.key == "Enter" || e.key == "=") {
+        console.log("hei");
+        const sum = document.getElementById("sum");
         calculateSum();
-        return;
-    };
-
-    actions(key.id);
-
-    key.classList.add('press');
+        sum.classList.add("press");
+    } else if(number) {
+        setScreenValue(e.key);
+        number.classList.add("press");
+    } else if(operation){
+        saveAction(operation.id);
+        operation.classList.add("press");
+    } else {return};
 });
 
-//sjekker om tall blir trykket og utfører evt. handlinger (tastatur)
 window.addEventListener("keydown", (e) => {
-    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if(e.keyCode == 8) {
+    if(e.key == "Backspace") {
         e.preventDefault();
         removeLastNumber();
-    } else if (e.shiftKey) { //i tilfelle det blir trykket "=", som innebærer shift, så ikke gjør noe..
-        return;
-    } else if (!key) {
-        return;
-    } else {
-        setScreenValue(key.id);
-    }
-    key.classList.add('press');
+        const backspace = document.getElementById("backspace");
+        backspace.classList.add("press");
+    } else {return};
 });
 
-//transition effects
-
+//Transition events
 const buttons = document.querySelectorAll('.button');
 buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 

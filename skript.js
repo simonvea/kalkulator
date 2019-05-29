@@ -75,8 +75,8 @@ function calculateSum() {
         const newValue = parseFloat(screenValue, 10);
         let sum = operator(action, oldValue, newValue);
         if(sum.toString().length > 6) {sum = sum.toExponential(3)};
-        screenValue = sum;
-        display.textContent = screenValue;
+        display.textContent = sum;
+        screenValue = 0;
         action = false;
     };
 }
